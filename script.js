@@ -39,7 +39,7 @@ shuffle(cards);
 
 generateCards();
 
-function generateCards(){
+function generateCards() {
     cardContainers = [];
     numTurnedCards = 0;
     itemsContainer.innerHTML = "";
@@ -80,7 +80,7 @@ function generateCards(){
     resize();
 }
 
-function generateCurrentCardsArray(){
+function generateCurrentCardsArray() {
     let currentCards = new Array();
 
     for (let index = 0; index < cardLayouts[level]; index++) {
@@ -91,7 +91,7 @@ function generateCurrentCardsArray(){
     return currentCards;
 }
 
-function createCard(id = "", info = ""){
+function createCard(id = "", label = "") {
     let card = document.createElement("div");
     card.id = id;
     card.className = "card";
@@ -104,7 +104,7 @@ function createCard(id = "", info = ""){
 
     let back = document.createElement("div");
     back.className = "back";
-    back.innerText = info;
+    back.innerText = label;
     back.style.backgroundColor = id;
 
     card.appendChild(content);
@@ -117,9 +117,7 @@ function createCard(id = "", info = ""){
     return card;
 }
 
-function handleCardClick(event){
-    console.log("click");
-
+function handleCardClick(event) {
     card = event.currentTarget;
 
     if(!card.classList.contains("selected")){
@@ -134,23 +132,23 @@ function handleCardClick(event){
     }
 }
 
-function onCardRevelead(card){
+function onCardRevelead(card) {
     enableCardsClick();
 
     if (selectedCards.indexOf(card) == 1)
     {
+        //if this is true, then a match has occured
         if (selectedCards[0].id == selectedCards[1].id)
         {
-            console.log("match")
             numTurnedCards += 2;
             selectedCards[0].removeEventListener("click", handleCardClick);
             selectedCards[1].removeEventListener("click", handleCardClick);
             selectedCards = [];
             
+            //if this is true, then the level is finished
             if (numTurnedCards == cardContainers.length){
                 alert("Finished!");
 
-                console.log(level, cardLayouts.length)
                 if(level < cardLayouts.length-1)
                     level++;
                 
@@ -166,14 +164,14 @@ function onCardRevelead(card){
     }
 }
 
-function disableCardsClick(){
+function disableCardsClick() {
     for (let index = 0; index < cardContainers.length; index++) {
         const element = cardContainers[index];
         element.style.pointerEvents = "none";
     }
 }
 
-function enableCardsClick(){
+function enableCardsClick() {
     for (let index = 0; index < cardContainers.length; index++) {
         const element = cardContainers[index];
         element.style.pointerEvents = "auto";
@@ -200,7 +198,7 @@ function shuffle(array) {
 
 window.addEventListener("resize", resize);
 
-function resize(){
+function resize() {
     let maxWidth  = itemsContainer.clientWidth,
     maxHeight = itemsContainer.clientHeight;
 

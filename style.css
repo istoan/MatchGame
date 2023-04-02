@@ -1,7 +1,8 @@
-@import 'https://fonts.googleapis.com/css?family=Lily+Script+One';
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&display=swap');
+
 body {
   background: white;
-  font-family: 'Lily Script One';
+  font-family: 'Open Sans', sans-serif;;
   margin: 50px;
   user-select: none;
   overflow: hidden;
@@ -58,14 +59,14 @@ body {
   position: absolute;
   height: 100%;
   width: 100%;
-  background: white;
-  line-height: 300px;
-  color: #03446A;
   text-align: center;
-  font-size: 60px;
+  font-size: 50px;
   backface-visibility: hidden;
   border-radius: 25px;
   box-shadow: 0 0 15px rgba(0,0,0,0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .front {
