@@ -1,2 +1,2 @@
 # MatchGame
- Match game, memory game
+ Match colors memory game
