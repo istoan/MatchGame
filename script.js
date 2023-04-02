@@ -1,4 +1,5 @@
 let itemsContainer = document.getElementById("itemsContainer");
+let gameContainer = document.getElementById("gameContainer");
 let level = 0;
 
 let cardLayouts = new Array();
@@ -7,16 +8,28 @@ cardLayouts.push(3);
 cardLayouts.push(4);
 cardLayouts.push(6);
 cardLayouts.push(8);
+cardLayouts.push(10);
+cardLayouts.push(18);
 
 let cards = new Array();
-cards.push({"id": "pink", "back": "Pink"});
-cards.push({"id": "orange", "back": "Orange"});
-cards.push({"id": "red", "back": "Red"});
-cards.push({"id": "blue", "back": "Blue"});
-cards.push({"id": "black", "back": "Black"});
-cards.push({"id": "lightblue", "back": "Lightblue"});
-cards.push({"id": "yellow", "back": "Yellow"});
-cards.push({"id": "magenta", "back": "Magenta"});
+cards.push({"id": "pink", "label": "Pink"});
+cards.push({"id": "orange", "label": "Orange"});
+cards.push({"id": "red", "label": "Red"});
+cards.push({"id": "blue", "label": "Blue"});
+cards.push({"id": "black", "label": "Black"});
+cards.push({"id": "lightblue", "label": "Lightblue"});
+cards.push({"id": "turquoise", "label": "Turquoise"});
+cards.push({"id": "magenta", "label": "Magenta"});
+cards.push({"id": "gray", "label": "Gray"});
+cards.push({"id": "brown", "label": "Brown"});
+cards.push({"id": "lime", "label": "Lime"});
+cards.push({"id": "teal", "label": "Teal"});
+cards.push({"id": "chocolate", "label": "Chocolate"});
+cards.push({"id": "tomato", "label": "Tomato"});
+cards.push({"id": "gold", "label": "Gold"});
+cards.push({"id": "slateblue", "label": "Slateblue"});
+cards.push({"id": "olivedrab", "label": "Olivedrab"});
+cards.push({"id": "navy", "label": "Navy"});
 
 let selectedCards = new Array();
 let numTurnedCards = 0;
@@ -31,6 +44,29 @@ function generateCards(){
     numTurnedCards = 0;
     itemsContainer.innerHTML = "";
 
+    switch (level) {
+        case 1:
+            itemsContainer.style.gridTemplateColumns = "300px 300px 300px";
+            break;
+
+        case 2:
+        case 3:
+        case 4:
+            itemsContainer.style.gridTemplateColumns = "300px 300px 300px 300px";
+            break;
+
+        case 5:
+            itemsContainer.style.gridTemplateColumns = "300px 300px 300px 300px 300px";
+            break;
+        
+        case 6:
+            itemsContainer.style.gridTemplateColumns = "300px 300px 300px 300px 300px 300px";
+            break;
+        
+        default:
+            break;
+    }
+
     let currentCards = generateCurrentCardsArray();
 
     shuffle(currentCards);
@@ -38,8 +74,10 @@ function generateCards(){
     for (let index = 0; index < currentCards.length; index++) {
         const element = currentCards[index];
 
-        cardContainers.push(createCard(element.id, element.back));
+        cardContainers.push(createCard(element.id, element.label));
     }
+
+    resize();
 }
 
 function generateCurrentCardsArray(){
@@ -63,7 +101,6 @@ function createCard(id = "", info = ""){
 
     let front = document.createElement("div");
     front.className = "front";
-    front.innerHTML = "Card";
 
     let back = document.createElement("div");
     back.className = "back";
@@ -116,6 +153,7 @@ function onCardRevelead(card){
                 console.log(level, cardLayouts.length)
                 if(level < cardLayouts.length-1)
                     level++;
+                
                 generateCards();
             }
         }
@@ -158,4 +196,21 @@ function shuffle(array) {
     }
   
     return array;
-  }
+}
+
+window.addEventListener("resize", resize);
+
+function resize(){
+    let maxWidth  = itemsContainer.clientWidth,
+    maxHeight = itemsContainer.clientHeight;
+
+    let scale,
+    width = gameContainer.getBoundingClientRect().width;
+    height = gameContainer.getBoundingClientRect().height;
+
+    scale =  Math.min(width/maxWidth, height/maxHeight);
+    console.log(scale, maxWidth, width);
+    itemsContainer.style.transform = 'scale(' + scale + ')';
+}
+
+resize();
