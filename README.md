@@ -1,4 +1,4 @@
 # MatchGame
  Match colors memory game
 
-![Preview of the Match Color Game](https://istoan.com/jocuri/MemoreazaCulorile/image.png)
+[<img src="https://istoan.com/jocuri/MemoreazaCulorile/image.png">](https://istoan.com/jocuri/MemoreazaCulorile/)
